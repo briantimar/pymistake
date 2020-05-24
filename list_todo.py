@@ -52,5 +52,7 @@ if __name__ == "__main__":
             if ct > 0:
                 assert len(window) == 0
                 window_priority = ct
+                if window_priority > max(priorities.keys()):
+                    window_priority = max(priorities.keys())
                 startline = linenum + 1
                 window.append(ln) 
