@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """ List TODOs"""
 import argparse
 
