@@ -30,11 +30,14 @@ if __name__ == "__main__":
     window_priority = 0
     startline = 0
 
+    windows_by_priority = {n: list() for n in priorities.keys()}
+
     def flush():
         global window
-        print(f"In {source}, line {startline}: {priorities[window_priority]}")
-        print("".join(window))
-        print("-"*30)
+        w=f"In {source}, line {startline}: {priorities[window_priority]}\n"
+        w+="".join(window)
+        w+= "\n" + "-"*30 + "\n"
+        windows_by_priority[window_priority].append(w)
         window = []
 
 
@@ -58,3 +61,6 @@ if __name__ == "__main__":
                     window_priority = max(priorities.keys())
                 startline = linenum + 1
                 window.append(ln) 
+    for priority in reversed(sorted(windows_by_priority.keys())):
+        for window in windows_by_priority[priority]:
+            print(window)
